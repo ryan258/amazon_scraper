@@ -29,6 +29,7 @@ app.get('/products/:productId', async (req, res) => {
   } catch (error) {
     // console.error(error)
     res.json(error)
+    console.log('beep')
   }
 })
 
@@ -56,6 +57,22 @@ app.get('/products/:productId/offers', async (req, res) => {
   try {
     // git info for a specific product
     const response = await request(`${baseUrl}&url=https://www.amazon.com/gp/offer-listing/${productId}`)
+    // dp = product details
+    res.json(JSON.parse(response)) // get the json data string from the response and parse it into a usable JS object
+  } catch (error) {
+    // console.error(error)
+    res.json(error)
+  }
+})
+
+// GET search results
+app.get('/search/:searchQuery', async (req, res) => {
+  // "dynamic placeholder?" - 'yep, :productId is what you're looking for'
+  const { searchQuery } = req.params
+
+  try {
+    // git info for a specific product
+    const response = await request(`${baseUrl}&url=https://www.amazon.com/s?k=${searchQuery}`)
     // dp = product details
     res.json(JSON.parse(response)) // get the json data string from the response and parse it into a usable JS object
   } catch (error) {
