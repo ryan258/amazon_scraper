@@ -11,3 +11,5 @@ app.get('/', (req, res) => {
   // "now respond with the following when someone visits the '/' route"
   res.send('Welcome to the Amazon Scraper! 🥳')
 })
+
+app.listen(PORT, () => console.log(`Server is paying attention on port ${PORT}`)) // "Pay attention!"
